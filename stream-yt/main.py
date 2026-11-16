@@ -105,7 +105,7 @@ _JUNK_PENALTIES = (
     ("remix", 0.30),
     ("loop", 0.40),
 )
-_LONG_OK_HINTS = ("album", "альбом", "mix", "микс", "live", "лайв", "concert", "концерт", "set", "сет", "hour", "час", "podcast", "подкаст")
+_LONG_OK_HINTS = ("album", "альбом", "mix", "микс", "live", "лайв", "concert", "концерт", "set", "сет", "hour", "hours", "час", "часа", "часов", "podcast", "подкаст", "playlist", "плейлист")
 
 
 def _is_http_url(text):
@@ -325,6 +325,21 @@ def _compute_junk_penalty(raw_title, uploader, duration_ms, raw_query, cat_durat
                 penalty += 0.35
 
     return penalty
+
+
+def _accept_search_entry(entry, query):
+    """Не заменяем песню сборником, даже если больше результатов нет."""
+    if entry.get("is_live") or entry.get("live_status") in ("is_live", "is_upcoming"):
+        return False
+    try:
+        seconds = float(entry.get("duration") or 0)
+    except (TypeError, ValueError):
+        return False
+    if seconds <= 0:
+        return False
+    q = _normalize_text(query)
+    wants_long = any(re.search(rf"\b{re.escape(h)}\b", q) for h in _LONG_OK_HINTS)
+    return seconds <= 12 * 60 or wants_long
 
 
 def _http_get_json(url, timeout=CATALOG_TIMEOUT_SEC):
@@ -611,7 +626,7 @@ def _match_catalog_for_candidate(cand_artist, cand_title, duration_ms, raw_query
     return None, best_score
 
 
-def _search_streams_and_rank(raw_query, yt_dlp):
+def _search_streams_and_rank(raw_query, yt_dlp, youtube_only=False):
     best_query, catalog_list = _search_catalogs(raw_query)
 
     yt_expr = f"ytsearch8:{best_query}"
@@ -621,8 +636,10 @@ def _search_streams_and_rank(raw_query, yt_dlp):
     errors = []
     with ThreadPoolExecutor(max_workers=2) as pool:
         fut_yt = pool.submit(_run_ytdlp_search, yt_dlp, yt_expr, "YouTube")
-        fut_sc = pool.submit(_run_ytdlp_search, yt_dlp, sc_expr, "SoundCloud")
-        for fut, platform in ((fut_yt, "youtube"), (fut_sc, "soundcloud")):
+        searches = [(fut_yt, "youtube")]
+        if not youtube_only:
+            searches.append((pool.submit(_run_ytdlp_search, yt_dlp, sc_expr, "SoundCloud"), "soundcloud"))
+        for fut, platform in searches:
             try:
                 entries, err = fut.result(timeout=SEARCH_TIMEOUT_SEC + 2)
                 if err:
@@ -639,6 +656,8 @@ def _search_streams_and_rank(raw_query, yt_dlp):
     seen_urls = set()
     scored = []
     for entry in all_entries:
+        if not _accept_search_entry(entry, raw_query):
+            continue
         page_url = (entry.get("webpage_url") or entry.get("url") or "").strip()
         if not page_url or not _is_http_url(page_url):
             continue
@@ -946,6 +965,46 @@ def _enrich_from_info_if_uncached(info, raw_query, page_url):
     return meta
 
 
+def _is_source_timeout(error):
+    message = str(error).lower()
+    return any(s in message for s in ("timed out", "timeout", "время ожидания"))
+
+
+def _playback_error(error):
+    message = str(error)
+    if _is_source_timeout(error):
+        source = "SoundCloud" if "soundcloud" in message.lower() else "Источник"
+        return f"{source} не ответил вовремя. Повторите запуск позже или выберите другую запись."
+    return message
+
+
+def _try_youtube_alternative(source_url, meta, error, yt_dlp):
+    host = (urllib.parse.urlparse(source_url).hostname or "").lower()
+    if not (host == "soundcloud.com" or host.endswith(".soundcloud.com")) or not _is_source_timeout(error):
+        return None
+    meta = meta or {}
+    artist = _normalize_text(meta.get("artist") or "")
+    title = _normalize_text(meta.get("title") or "")
+    duration = int(meta.get("durationMs") or 0)
+    if not artist or not title or artist in ("поток", "неизвестный исполнитель") or duration <= 0:
+        return None
+    p.status("SoundCloud не ответил. Ищу эту запись на YouTube...")
+    try:
+        matches = _search_streams_and_rank(f"{meta['artist']} {meta['title']}", yt_dlp, youtube_only=True)
+        for item in matches:
+            candidate = item.get("_meta") or {}
+            if (_normalize_text(candidate.get("artist") or "") != artist or
+                    _normalize_text(candidate.get("title") or "") != title):
+                continue
+            if abs(int(candidate.get("durationMs") or 0) - duration) > max(5000, duration * .05):
+                continue
+            # Один проверенный альтернативный источник, без цепочки повторных поисков.
+            return _resolve_query(item["arg"])
+    except Exception as ex:
+        p.log(f"Не удалось получить альтернативу YouTube: {ex}")
+    return None
+
+
 def _resolve_query(raw_query):
     raw_query = (raw_query or "").strip()
     if not raw_query:
@@ -974,13 +1033,20 @@ def _resolve_query(raw_query):
     try:
         proc = _run_subprocess(cmd, timeout=RESOLVE_TIMEOUT_SEC)
     except subprocess.TimeoutExpired:
-        raise RuntimeError(f"Превышено время ожидания yt-dlp ({RESOLVE_TIMEOUT_SEC} с)")
+        error = f"{target_source}: превышено время ожидания yt-dlp ({RESOLVE_TIMEOUT_SEC} с)"
+        alternative = _try_youtube_alternative(target_source, cached_meta, error, yt_dlp)
+        if alternative is not None:
+            return alternative
+        raise RuntimeError(error)
     except OSError as e:
         raise RuntimeError(f"Ошибка запуска yt-dlp: {e}")
 
     if proc.returncode != 0:
         err = (proc.stderr or proc.stdout or "").strip().splitlines()
         msg = err[-1] if err else f"код возврата {proc.returncode}"
+        alternative = _try_youtube_alternative(target_source, cached_meta, msg, yt_dlp)
+        if alternative is not None:
+            return alternative
         raise RuntimeError(f"yt-dlp: {msg}")
 
     try:
@@ -997,6 +1063,9 @@ def _resolve_query(raw_query):
         info = data
     else:
         raise RuntimeError("Неожиданный ответ yt-dlp")
+
+    if not is_url and not _accept_search_entry(info, raw_query):
+        raise RuntimeError("Найден длинный сборник или запись без длительности вместо трека. Уточните запрос или откройте нужную запись по ссылке.")
 
     stream_url = info.get("url")
     if not stream_url:
@@ -1121,7 +1190,7 @@ def _play_or_queue(raw_query, queue_mode=False):
         track, webpage_url, is_direct = _resolve_query(raw_query)
     except Exception as e:
         p.log(f"Ошибка разрешения '{raw_query}': {e}")
-        p.toast(f"Ошибка: {e}")
+        p.toast(_playback_error(e))
         return
     finally:
         p.status(None)
@@ -1381,8 +1450,9 @@ def _download_to_library_impl(raw_query):
             try:
                 source, meta = _find_best_stream_match(raw_query)
             except Exception as e:
-                p.log(f"Поиск не удался ({e}), пробую прямой fallback ytsearch1")
-                source = _format_query(raw_query)
+                p.log(f"Поиск не удался: {e}")
+                p.toast(f"Не найден подходящий трек: {e}")
+                return
         else:
             source = _format_query(raw_query)
             if is_url and not _is_direct_audio_url(raw_query):
@@ -1586,6 +1656,8 @@ def on_resolve_track(ev):
 
     p.status("Получение потока...")
     try:
+        if _is_http_url(target) and not _cache_meta_get(target):
+            _cache_meta_put(target, track)
         resolved_track, webpage_url, is_direct = _resolve_query(target)
         in_title = (track.get("title") or "").strip()
         in_artist = (track.get("artist") or "").strip()
@@ -1603,7 +1675,7 @@ def on_resolve_track(ev):
         p.reply(req_id, ok=True, data=resolved_track)
     except Exception as e:
         p.log(f"Ошибка повторного разрешения потока '{target}': {e}")
-        p.reply(req_id, ok=False, error=str(e))
+        p.reply(req_id, ok=False, error=_playback_error(e))
     finally:
         p.status(None)
 
