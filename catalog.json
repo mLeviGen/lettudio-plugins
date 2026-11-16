@@ -7,10 +7,7 @@
       "version": "1.1.0",
       "type": "theme",
       "description": "Готовые темы (Antigravity, Discord, OLED, Spotify) и кастомная настройка цветов для ПК и телефона",
-      "platforms": [
-        "windows",
-        "android"
-      ],
+      "platforms": ["windows", "android"],
       "url": "https://raw.githubusercontent.com/mLeviGen/lettudio-plugins/main/lettudio-themes/plugin.json",
       "zipUrl": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/lettudio-themes.zip"
     },
@@ -20,10 +17,7 @@
       "version": "2.2.0",
       "type": "theme",
       "description": "Стиль Samsung One UI 9: чёрный фон и серые карточки, плавающая навигация, матовое стекло у навигации, плеера и меню; тёмная и светлая палитры",
-      "platforms": [
-        "windows",
-        "android"
-      ],
+      "platforms": ["windows", "android"],
       "url": "https://raw.githubusercontent.com/mLeviGen/lettudio-plugins/main/theme-oneui9/plugin.json",
       "zipUrl": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/theme-oneui9.zip"
     },
@@ -33,10 +27,7 @@
       "version": "1.1.0",
       "type": "theme",
       "description": "Стиль Android 16–18 (Material 3 Expressive): тональные палитры, крупные скругления, навигация с «таблеткой» и блюр у навигации, плеера, меню и шторок",
-      "platforms": [
-        "windows",
-        "android"
-      ],
+      "platforms": ["windows", "android"],
       "url": "https://raw.githubusercontent.com/mLeviGen/lettudio-plugins/main/theme-material/plugin.json",
       "zipUrl": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/theme-material.zip"
     },
@@ -46,21 +37,16 @@
       "version": "1.1.0",
       "type": "theme",
       "description": "Холодная тёмная тема — пример плагина-темы",
-      "platforms": [
-        "windows",
-        "android"
-      ],
+      "platforms": ["windows", "android"],
       "url": "https://raw.githubusercontent.com/mLeviGen/lettudio-plugins/main/theme-midnight/plugin.json"
     },
     {
       "id": "stream-yt",
       "name": "Поток и загрузка (yt-dlp)",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "type": "process",
       "description": "Потоковое воспроизведение аудио по URL или текстовому поиску через yt-dlp, история недавних потоков и скачивание треков в медиатеку.",
-      "platforms": [
-        "windows"
-      ],
+      "platforms": ["windows"],
       "url": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/stream-yt.zip"
     },
     {
@@ -69,9 +55,7 @@
       "version": "1.0.0",
       "type": "process",
       "description": "Показывает текущий трек в статусе Discord («Слушает Lettudio»). Нужен client_id в config.json.",
-      "platforms": [
-        "windows"
-      ],
+      "platforms": ["windows"],
       "url": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/discord-presence.zip"
     },
     {
@@ -80,9 +64,7 @@
       "version": "1.0.0",
       "type": "process",
       "description": "Ставит музыку на паузу через 15/30/60 минут. Кнопка в плеере и секция на главной — пример плагина.",
-      "platforms": [
-        "windows"
-      ],
+      "platforms": ["windows"],
       "url": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/sleep-timer.zip"
     }
   ]
