@@ -1,7 +1,7 @@
 {
   "id": "theme-oneui9",
   "name": "One UI 9",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "type": "theme",
   "description": "Стиль Samsung One UI 9: чёрный фон и серые карточки, плавающая навигация, матовое стекло у навигации, плеера и меню; тёмная и светлая палитры",
   "customizable": true,
@@ -64,11 +64,9 @@
         },
         "controls": "oneui",
         "systemFonts": [
-          "SamsungOne",
-          "SamsungOneUI",
-          "samsungone",
-          "sec-roboto-light",
           "sec",
+          "OneUI Sans",
+          "SamsungOne",
           "Roboto"
         ]
       }
@@ -110,11 +108,9 @@
         "navLabels": "all",
         "controls": "oneui",
         "systemFonts": [
-          "SamsungOne",
-          "SamsungOneUI",
-          "samsungone",
-          "sec-roboto-light",
           "sec",
+          "OneUI Sans",
+          "SamsungOne",
           "Roboto"
         ]
       }
@@ -159,11 +155,9 @@
         "glowOpacity": 0.22,
         "controls": "oneui",
         "systemFonts": [
-          "SamsungOne",
-          "SamsungOneUI",
-          "samsungone",
-          "sec-roboto-light",
           "sec",
+          "OneUI Sans",
+          "SamsungOne",
           "Roboto"
         ]
       }
@@ -205,11 +199,9 @@
         "navLabels": "all",
         "controls": "oneui",
         "systemFonts": [
-          "SamsungOne",
-          "SamsungOneUI",
-          "samsungone",
-          "sec-roboto-light",
           "sec",
+          "OneUI Sans",
+          "SamsungOne",
           "Roboto"
         ]
       }
@@ -251,11 +243,9 @@
         "navLabels": "all",
         "controls": "oneui",
         "systemFonts": [
-          "SamsungOne",
-          "SamsungOneUI",
-          "samsungone",
-          "sec-roboto-light",
           "sec",
+          "OneUI Sans",
+          "SamsungOne",
           "Roboto"
         ]
       }

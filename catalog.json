@@ -14,7 +14,7 @@
     {
       "id": "theme-oneui9",
       "name": "One UI 9",
-      "version": "2.2.0",
+      "version": "2.2.1",
       "type": "theme",
       "description": "Стиль Samsung One UI 9: чёрный фон и серые карточки, плавающая навигация, матовое стекло у навигации, плеера и меню; тёмная и светлая палитры",
       "platforms": ["windows", "android"],
