@@ -1,0 +1,8 @@
+{
+  "id": "discord-presence",
+  "name": "Discord Presence",
+  "version": "1.0.0",
+  "type": "process",
+  "description": "Показывает текущий трек в статусе Discord («Слушает Lettudio»). Нужен client_id в config.json.",
+  "run": { "command": "python", "args": ["-u", "main.py"] }
+}
