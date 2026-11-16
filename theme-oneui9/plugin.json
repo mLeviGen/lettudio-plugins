@@ -1,11 +1,78 @@
 {
   "id": "theme-oneui9",
   "name": "One UI 9",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "type": "theme",
   "description": "Стиль Samsung One UI 9: чёрный фон и серые карточки, плавающая навигация, матовое стекло у навигации, плеера и меню; тёмная и светлая палитры",
   "customizable": true,
   "presets": [
+    {
+      "id": "oneui9-system",
+      "name": "Системные цвета",
+      "description": "Акцент из цветовой палитры One UI и тёмная/светлая тема как в системе; фон нейтральный, как у приложений Samsung.",
+      "theme": {
+        "blur": 0,
+        "navBlur": 24,
+        "playerBlur": 24,
+        "menuBlur": 28,
+        "navOpacity": 0.92,
+        "playerOpacity": 0.9,
+        "menuOpacity": 0.96,
+        "borderWidth": 0,
+        "shadowOpacity": 0,
+        "ambientGlow": false,
+        "radius": 26,
+        "panelShape": "rounded",
+        "navIndicator": "pill",
+        "navStyle": "floating",
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "all",
+        "brightness": "system",
+        "dynamic": "accent",
+        "dark": {
+          "bg": "#000000",
+          "surface": "#FF181818",
+          "surfaceHi": "#FF2A2A2A",
+          "fill": "#FF1E3D6B",
+          "text": "#FAFAFA",
+          "muted": "#9C9C9C",
+          "accent": "#3E91FF",
+          "coverA": "#3E91FF",
+          "coverB": "#1A2A44",
+          "navIndicatorColor": "#26FFFFFF",
+          "borderColor": "#00000000",
+          "highlightColor": "#00000000"
+        },
+        "light": {
+          "bg": "#F4F4F6",
+          "surface": "#FFFFFFFF",
+          "surfaceHi": "#FFE7E7EA",
+          "fill": "#FFCFE0FF",
+          "text": "#111111",
+          "muted": "#6F6F73",
+          "accent": "#0A7CFF",
+          "coverA": "#0A7CFF",
+          "coverB": "#8AC4FF",
+          "navIndicatorColor": "#14000000",
+          "borderColor": "#00000000",
+          "highlightColor": "#00000000",
+          "navOpacity": 0.9,
+          "playerOpacity": 0.88,
+          "menuOpacity": 0.97,
+          "shadowOpacity": 0.06
+        },
+        "controls": "oneui",
+        "systemFonts": [
+          "SamsungOne",
+          "SamsungOneUI",
+          "samsungone",
+          "sec-roboto-light",
+          "sec",
+          "Roboto"
+        ]
+      }
+    },
     {
       "id": "oneui9-dark",
       "name": "One UI 9 Dark",
@@ -40,7 +107,16 @@
         "navStyle": "floating",
         "coverShape": "rounded",
         "density": "normal",
-        "navLabels": "all"
+        "navLabels": "all",
+        "controls": "oneui",
+        "systemFonts": [
+          "SamsungOne",
+          "SamsungOneUI",
+          "samsungone",
+          "sec-roboto-light",
+          "sec",
+          "Roboto"
+        ]
       }
     },
     {
@@ -80,7 +156,16 @@
         "navLabels": "all",
         "glowA": "#3D4FB0",
         "glowB": "#7A45C8",
-        "glowOpacity": 0.22
+        "glowOpacity": 0.22,
+        "controls": "oneui",
+        "systemFonts": [
+          "SamsungOne",
+          "SamsungOneUI",
+          "samsungone",
+          "sec-roboto-light",
+          "sec",
+          "Roboto"
+        ]
       }
     },
     {
@@ -117,7 +202,16 @@
         "navStyle": "floating",
         "coverShape": "rounded",
         "density": "normal",
-        "navLabels": "all"
+        "navLabels": "all",
+        "controls": "oneui",
+        "systemFonts": [
+          "SamsungOne",
+          "SamsungOneUI",
+          "samsungone",
+          "sec-roboto-light",
+          "sec",
+          "Roboto"
+        ]
       }
     },
     {
@@ -154,7 +248,16 @@
         "navStyle": "floating",
         "coverShape": "rounded",
         "density": "normal",
-        "navLabels": "all"
+        "navLabels": "all",
+        "controls": "oneui",
+        "systemFonts": [
+          "SamsungOne",
+          "SamsungOneUI",
+          "samsungone",
+          "sec-roboto-light",
+          "sec",
+          "Roboto"
+        ]
       }
     }
   ]

@@ -1,11 +1,75 @@
 {
   "id": "theme-material",
   "name": "Android Material",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "theme",
   "description": "Стиль Android 16–18 (Material 3 Expressive): тональные палитры, крупные скругления, навигация с «таблеткой» и блюр у навигации, плеера, меню и шторок",
   "customizable": true,
   "presets": [
+    {
+      "id": "material-system",
+      "name": "Системные цвета",
+      "description": "Цвета и тёмная/светлая тема как в системе (Material You, Android 12+). На старом Android — сиреневая палитра.",
+      "theme": {
+        "radius": 28,
+        "panelShape": "rounded",
+        "navIndicator": "pill",
+        "navStyle": "material",
+        "navLabels": "all",
+        "coverShape": "rounded",
+        "coverRound": 0.24,
+        "density": "normal",
+        "borderWidth": 0,
+        "shadowOpacity": 0,
+        "ambientGlow": false,
+        "blur": 0,
+        "navBlur": 22,
+        "playerBlur": 30,
+        "menuBlur": 28,
+        "navOpacity": 0.9,
+        "playerOpacity": 0.8,
+        "menuOpacity": 0.94,
+        "brightness": "system",
+        "dynamic": "full",
+        "dark": {
+          "bg": "#141218",
+          "surface": "#FF1D1B20",
+          "surfaceHi": "#FF2B2930",
+          "fill": "#FF4F378B",
+          "text": "#E6E0E9",
+          "muted": "#CAC4D0",
+          "accent": "#D0BCFF",
+          "coverA": "#D0BCFF",
+          "coverB": "#4A4458",
+          "navIndicatorColor": "#FF4A4458",
+          "borderColor": "#00000000",
+          "highlightColor": "#00000000"
+        },
+        "light": {
+          "bg": "#FEF7FF",
+          "surface": "#FFF3EDF7",
+          "surfaceHi": "#FFECE6F0",
+          "fill": "#FFEADDFF",
+          "text": "#1D1B20",
+          "muted": "#49454F",
+          "accent": "#6750A4",
+          "coverA": "#6750A4",
+          "coverB": "#CCC2DC",
+          "navIndicatorColor": "#FFE8DEF8",
+          "borderColor": "#00000000",
+          "highlightColor": "#00000000"
+        },
+        "controls": "material",
+        "systemFonts": [
+          "google-sans-flex",
+          "google-sans-text",
+          "google-sans",
+          "Google Sans",
+          "Roboto Flex",
+          "Roboto"
+        ]
+      }
+    },
     {
       "id": "material-dark",
       "name": "Material Dark",
@@ -41,7 +105,16 @@
         "accent": "#D0BCFF",
         "coverA": "#D0BCFF",
         "coverB": "#4A4458",
-        "navIndicatorColor": "#FF4A4458"
+        "navIndicatorColor": "#FF4A4458",
+        "controls": "material",
+        "systemFonts": [
+          "google-sans-flex",
+          "google-sans-text",
+          "google-sans",
+          "Google Sans",
+          "Roboto Flex",
+          "Roboto"
+        ]
       }
     },
     {
@@ -79,7 +152,16 @@
         "accent": "#6750A4",
         "coverA": "#6750A4",
         "coverB": "#CCC2DC",
-        "navIndicatorColor": "#FFE8DEF8"
+        "navIndicatorColor": "#FFE8DEF8",
+        "controls": "material",
+        "systemFonts": [
+          "google-sans-flex",
+          "google-sans-text",
+          "google-sans",
+          "Google Sans",
+          "Roboto Flex",
+          "Roboto"
+        ]
       }
     },
     {
@@ -117,7 +199,16 @@
         "accent": "#A8C8FF",
         "coverA": "#A8C8FF",
         "coverB": "#3B4858",
-        "navIndicatorColor": "#FF3B4858"
+        "navIndicatorColor": "#FF3B4858",
+        "controls": "material",
+        "systemFonts": [
+          "google-sans-flex",
+          "google-sans-text",
+          "google-sans",
+          "Google Sans",
+          "Roboto Flex",
+          "Roboto"
+        ]
       }
     },
     {
@@ -155,7 +246,16 @@
         "accent": "#9AD49A",
         "coverA": "#9AD49A",
         "coverB": "#3B4B39",
-        "navIndicatorColor": "#FF3B4B39"
+        "navIndicatorColor": "#FF3B4B39",
+        "controls": "material",
+        "systemFonts": [
+          "google-sans-flex",
+          "google-sans-text",
+          "google-sans",
+          "Google Sans",
+          "Roboto Flex",
+          "Roboto"
+        ]
       }
     },
     {
@@ -193,7 +293,16 @@
         "accent": "#D7C4FF",
         "coverA": "#D7C4FF",
         "coverB": "#3E3850",
-        "navIndicatorColor": "#FF3E3850"
+        "navIndicatorColor": "#FF3E3850",
+        "controls": "material",
+        "systemFonts": [
+          "google-sans-flex",
+          "google-sans-text",
+          "google-sans",
+          "Google Sans",
+          "Roboto Flex",
+          "Roboto"
+        ]
       }
     },
     {
@@ -231,7 +340,16 @@
         "accent": "#D0BCFF",
         "coverA": "#D0BCFF",
         "coverB": "#4A4458",
-        "navIndicatorColor": "#FF4A4458"
+        "navIndicatorColor": "#FF4A4458",
+        "controls": "material",
+        "systemFonts": [
+          "google-sans-flex",
+          "google-sans-text",
+          "google-sans",
+          "Google Sans",
+          "Roboto Flex",
+          "Roboto"
+        ]
       }
     }
   ]
