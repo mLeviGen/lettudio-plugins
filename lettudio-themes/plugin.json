@@ -1,0 +1,110 @@
+{
+  "id": "lettudio-themes",
+  "name": "Темы Lettudio",
+  "version": "1.1.0",
+  "type": "theme",
+  "description": "Готовые темы (Antigravity, Discord, OLED, Spotify) и кастомная настройка цветов для ПК и телефона",
+  "customizable": true,
+  "presets": [
+    {
+      "id": "antigravity",
+      "name": "Antigravity",
+      "description": "Глубокий тёмный фон и сине-индиго акценты",
+      "theme": {
+        "bg": "#0C0E14",
+        "surface": "#141821",
+        "surfaceHi": "#1E2432",
+        "fill": "#2D4270",
+        "text": "#ECEFF4",
+        "muted": "#8B95AA",
+        "accent": "#7AA2F7",
+        "coverA": "#7AA2F7",
+        "coverB": "#2B3A67",
+        "radius": 18,
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    },
+    {
+      "id": "discord",
+      "name": "Discord",
+      "description": "Фирменная палитра Discord Dark и Blurple",
+      "theme": {
+        "bg": "#1E1F22",
+        "surface": "#2B2D31",
+        "surfaceHi": "#383A40",
+        "fill": "#4752C4",
+        "text": "#F2F3F5",
+        "muted": "#949BA4",
+        "accent": "#5865F2",
+        "coverA": "#5865F2",
+        "coverB": "#2B2D31",
+        "radius": 14,
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    },
+    {
+      "id": "oled",
+      "name": "OLED",
+      "description": "Чистый чёрный фон (#000000) для AMOLED-экранов",
+      "theme": {
+        "bg": "#000000",
+        "surface": "#09090B",
+        "surfaceHi": "#141418",
+        "fill": "#27272A",
+        "text": "#FAFAFA",
+        "muted": "#71717A",
+        "accent": "#E4E4E7",
+        "coverA": "#27272A",
+        "coverB": "#09090B",
+        "radius": 18,
+        "coverShape": "circle",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "description": "Тёмно-графитовый фон и фирменный зелёный акцент Spotify",
+      "theme": {
+        "bg": "#121212",
+        "surface": "#1A1A1A",
+        "surfaceHi": "#282828",
+        "fill": "#156333",
+        "text": "#FFFFFF",
+        "muted": "#B3B3B3",
+        "accent": "#1DB954",
+        "coverA": "#1DB954",
+        "coverB": "#191414",
+        "radius": 14,
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    },
+    {
+      "id": "custom",
+      "name": "Кастомная",
+      "description": "Своя палитра и параметры интерфейса",
+      "theme": {
+        "bg": "#141418",
+        "surface": "#1E1E24",
+        "surfaceHi": "#2A2A32",
+        "fill": "#4C3B6E",
+        "text": "#ECECEF",
+        "muted": "#8C8C98",
+        "accent": "#B794F4",
+        "coverA": "#B794F4",
+        "coverB": "#382B54",
+        "radius": 18,
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    }
+  ]
+}

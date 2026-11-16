@@ -1,0 +1,22 @@
+{
+    "id":  "theme-midnight",
+    "name":  "Midnight",
+    "version":  "1.1.0",
+    "type":  "theme",
+    "description":  "Холодная тёмная тема — пример плагина-темы",
+    "theme":  {
+                  "bg":  "#0F1216",
+                  "surface":  "#181D23",
+                  "surfaceHi":  "#232A33",
+                  "fill":  "#2B5A55",
+                  "text":  "#E6EDF3",
+                  "muted":  "#7D8A99",
+                  "accent":  "#7FD1B9",
+                  "coverA":  "#7FD1B9",
+                  "coverB":  "#2B4C5E",
+                  "radius":  14,
+                  "coverShape":  "rounded",
+                  "density":  "compact",
+                  "navLabels":  "all"
+              }
+}
