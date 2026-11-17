@@ -43,9 +43,9 @@
     {
       "id": "stream-yt",
       "name": "Поток и загрузка (yt-dlp)",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "type": "process",
-      "description": "Потоковое воспроизведение аудио по URL или текстовому поиску через yt-dlp, история недавних потоков и скачивание треков в медиатеку.",
+      "description": "Потоковое воспроизведение аудио по URL или текстовому поиску через yt-dlp, история недавних потоков и скачивание по ссылке или запросу в медиатеку.",
       "platforms": ["windows"],
       "url": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/stream-yt.zip"
     },
