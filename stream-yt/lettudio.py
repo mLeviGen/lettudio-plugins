@@ -21,6 +21,7 @@
 """
 import itertools
 import json
+import os
 import queue
 import sys
 import threading
@@ -36,12 +37,15 @@ class Plugin:
         self._waiting = {}
         self._ids = itertools.count(1)
         self.state = {}  # последний снимок: track, playing, positionMs, ...
+        # Язык интерфейса приложения: ru | en | de. Берётся из LETTUDIO_LANG, затем из
+        # событий hello / lang (при смене языка приходит событие lang).
+        self.lang = (os.environ.get("LETTUDIO_LANG") or "ru").lower()
         self._threads = []
 
     # ---------- приём событий ----------
 
     def on(self, event_type):
-        """Декоратор: событие hello | track | state | stopped | search | bye."""
+        """Декоратор: событие hello | lang | track | state | stopped | search | bye."""
         def deco(fn):
             self._handlers.setdefault(event_type, []).append(fn)
             return fn
@@ -60,6 +64,18 @@ class Plugin:
             self._handlers.setdefault("search", []).append(f)
             return f
         return deco(fn) if fn is not None else deco
+
+    def translator(self, table):
+        """Возвращает функцию t(text, **fmt): text — русская строка (она же ключ),
+        table — {"en": {"русская строка": "English"}, "de": {...}}. Нет перевода — русская строка.
+        Подстановки {name} делаются через str.format. Язык берётся из self.lang на каждом вызове."""
+        def t(text, **fmt):
+            s = (table.get(self.lang) or {}).get(text)
+            if not s and self.lang == "de":  # нет немецкого — английский
+                s = (table.get("en") or {}).get(text)
+            s = s or text
+            return s.format(**fmt) if fmt else s
+        return t
 
     # ---------- команды ----------
 
@@ -184,6 +200,8 @@ class Plugin:
                 if box:
                     box.put(ev)
                 continue
+            if t in ("hello", "lang") and isinstance(ev.get("lang"), str) and ev["lang"]:
+                self.lang = ev["lang"].lower()
             if t in ("track", "state", "stopped"):
                 self.state = ev
             if t == "action":

@@ -1,11 +1,24 @@
 {
   "id": "stream-yt",
   "name": "Поток и загрузка (yt-dlp)",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "process",
   "description": "Потоковое воспроизведение аудио по URL или текстовому поиску через yt-dlp, история недавних потоков и скачивание треков в медиатеку.",
+  "i18n": {
+    "en": {
+      "name": "Streaming and download (yt-dlp)",
+      "description": "Stream audio by URL or text search via yt-dlp, a history of recent streams, and downloading by link or query into the library."
+    },
+    "de": {
+      "name": "Streaming und Download (yt-dlp)",
+      "description": "Audio per URL oder Textsuche über yt-dlp streamen, Verlauf der letzten Streams und Download per Link oder Suchanfrage in die Mediathek."
+    }
+  },
   "run": {
     "command": "python",
-    "args": ["-u", "main.py"]
+    "args": [
+      "-u",
+      "main.py"
+    ]
   }
 }
