@@ -1,15 +1,35 @@
 {
   "id": "theme-oneui9",
   "name": "One UI 9",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "type": "theme",
   "description": "Стиль Samsung One UI 9: чёрный фон и серые карточки, плавающая навигация, матовое стекло у навигации, плеера и меню; тёмная и светлая палитры",
+  "i18n": {
+    "en": {
+      "name": "One UI 9",
+      "description": "Samsung One UI 9 style: black background and gray cards, floating navigation, frosted glass on the navigation, player and menus; dark and light palettes"
+    },
+    "de": {
+      "name": "One UI 9",
+      "description": "Samsung-One-UI-9-Stil: schwarzer Hintergrund und graue Karten, schwebende Navigation, Milchglas bei Navigation, Player und Menüs; dunkle und helle Palette"
+    }
+  },
   "customizable": true,
   "presets": [
     {
       "id": "oneui9-system",
       "name": "Системные цвета",
       "description": "Акцент из цветовой палитры One UI и тёмная/светлая тема как в системе; фон нейтральный, как у приложений Samsung.",
+      "i18n": {
+        "en": {
+          "name": "System colors",
+          "description": "Accent from the One UI color palette and dark/light theme as in the system; neutral background like Samsung apps."
+        },
+        "de": {
+          "name": "Systemfarben",
+          "description": "Akzent aus der One-UI-Farbpalette und dunkles/helles Design wie im System; neutraler Hintergrund wie bei Samsung-Apps."
+        }
+      },
       "theme": {
         "blur": 0,
         "navBlur": 24,
@@ -75,6 +95,16 @@
       "id": "oneui9-dark",
       "name": "One UI 9 Dark",
       "description": "Как системные приложения Samsung: чёрный фон, серые карточки без обводки, плавающая навигация",
+      "i18n": {
+        "en": {
+          "name": "One UI 9 Dark",
+          "description": "Like Samsung system apps: black background, gray cards without outline, floating navigation"
+        },
+        "de": {
+          "name": "One UI 9 Dark",
+          "description": "Wie die Samsung-Systemapps: schwarzer Hintergrund, graue Karten ohne Rand, schwebende Navigation"
+        }
+      },
       "theme": {
         "brightness": "dark",
         "bg": "#000000",
@@ -119,6 +149,16 @@
       "id": "oneui9-galaxy-ai",
       "name": "One UI 9 Galaxy AI",
       "description": "Тёмный индиго с мягким свечением и фиолетово-синим акцентом",
+      "i18n": {
+        "en": {
+          "name": "One UI 9 Galaxy AI",
+          "description": "Dark indigo with a soft glow and a violet-blue accent"
+        },
+        "de": {
+          "name": "One UI 9 Galaxy AI",
+          "description": "Dunkles Indigo mit sanftem Leuchten und violett-blauem Akzent"
+        }
+      },
       "theme": {
         "brightness": "dark",
         "bg": "#05050A",
@@ -166,6 +206,16 @@
       "id": "oneui9-frost",
       "name": "One UI 9 Light",
       "description": "Светлая тема Samsung: белые карточки на светло-сером фоне",
+      "i18n": {
+        "en": {
+          "name": "One UI 9 Light",
+          "description": "Samsung light theme: white cards on a light gray background"
+        },
+        "de": {
+          "name": "One UI 9 Light",
+          "description": "Helles Samsung-Design: weiße Karten auf hellgrauem Hintergrund"
+        }
+      },
       "theme": {
         "brightness": "light",
         "bg": "#F4F4F6",
@@ -210,6 +260,16 @@
       "id": "custom",
       "name": "Кастомная",
       "description": "Своя палитра, блюр и прозрачность элементов",
+      "i18n": {
+        "en": {
+          "name": "Custom",
+          "description": "Your own palette, blur and element transparency"
+        },
+        "de": {
+          "name": "Benutzerdefiniert",
+          "description": "Eigene Palette, Unschärfe und Transparenz der Elemente"
+        }
+      },
       "theme": {
         "brightness": "dark",
         "bg": "#000000",

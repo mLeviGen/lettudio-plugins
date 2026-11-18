@@ -1,15 +1,35 @@
 {
   "id": "theme-material",
   "name": "Android Material",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "theme",
   "description": "Стиль Android 16–18 (Material 3 Expressive): тональные палитры, крупные скругления, навигация с «таблеткой» и блюр у навигации, плеера, меню и шторок",
+  "i18n": {
+    "en": {
+      "name": "Android Material",
+      "description": "Android 16–18 style (Material 3 Expressive): tonal palettes, large rounded corners, pill navigation, and blur on the navigation, player, menus and sheets"
+    },
+    "de": {
+      "name": "Android Material",
+      "description": "Android-16–18-Stil (Material 3 Expressive): tonale Paletten, große Rundungen, Navigation mit „Pille“ und Unschärfe bei Navigation, Player, Menüs und Sheets"
+    }
+  },
   "customizable": true,
   "presets": [
     {
       "id": "material-system",
       "name": "Системные цвета",
       "description": "Цвета и тёмная/светлая тема как в системе (Material You, Android 12+). На старом Android — сиреневая палитра.",
+      "i18n": {
+        "en": {
+          "name": "System colors",
+          "description": "Colors and dark/light theme as in the system (Material You, Android 12+). On older Android — a lilac palette."
+        },
+        "de": {
+          "name": "Systemfarben",
+          "description": "Farben und dunkles/helles Design wie im System (Material You, Android 12+). Auf älterem Android — eine fliederfarbene Palette."
+        }
+      },
       "theme": {
         "radius": 28,
         "panelShape": "rounded",
@@ -74,6 +94,16 @@
       "id": "material-dark",
       "name": "Material Dark",
       "description": "Сиреневая тональная палитра Material You, тёмная",
+      "i18n": {
+        "en": {
+          "name": "Material Dark",
+          "description": "Lilac Material You tonal palette, dark"
+        },
+        "de": {
+          "name": "Material Dark",
+          "description": "Fliederfarbene tonale Material-You-Palette, dunkel"
+        }
+      },
       "theme": {
         "radius": 28,
         "panelShape": "rounded",
@@ -121,6 +151,16 @@
       "id": "material-light",
       "name": "Material Light",
       "description": "Светлая тональная палитра Material You",
+      "i18n": {
+        "en": {
+          "name": "Material Light",
+          "description": "Light Material You tonal palette"
+        },
+        "de": {
+          "name": "Material Light",
+          "description": "Helle tonale Material-You-Palette"
+        }
+      },
       "theme": {
         "radius": 28,
         "panelShape": "rounded",
@@ -168,6 +208,16 @@
       "id": "material-blue",
       "name": "Material Blue",
       "description": "Синяя динамическая палитра, тёмная",
+      "i18n": {
+        "en": {
+          "name": "Material Blue",
+          "description": "Blue dynamic palette, dark"
+        },
+        "de": {
+          "name": "Material Blue",
+          "description": "Blaue dynamische Palette, dunkel"
+        }
+      },
       "theme": {
         "radius": 28,
         "panelShape": "rounded",
@@ -215,6 +265,16 @@
       "id": "material-green",
       "name": "Material Green",
       "description": "Зелёная динамическая палитра, тёмная",
+      "i18n": {
+        "en": {
+          "name": "Material Green",
+          "description": "Green dynamic palette, dark"
+        },
+        "de": {
+          "name": "Material Green",
+          "description": "Grüne dynamische Palette, dunkel"
+        }
+      },
       "theme": {
         "radius": 28,
         "panelShape": "rounded",
@@ -262,6 +322,16 @@
       "id": "material-amoled",
       "name": "Material AMOLED",
       "description": "Чистый чёрный фон с тональными карточками",
+      "i18n": {
+        "en": {
+          "name": "Material AMOLED",
+          "description": "Pure black background with tonal cards"
+        },
+        "de": {
+          "name": "Material AMOLED",
+          "description": "Reiner schwarzer Hintergrund mit tonalen Karten"
+        }
+      },
       "theme": {
         "radius": 28,
         "panelShape": "rounded",
@@ -309,6 +379,16 @@
       "id": "custom",
       "name": "Кастомная",
       "description": "Своя палитра, блюр и прозрачность элементов",
+      "i18n": {
+        "en": {
+          "name": "Custom",
+          "description": "Your own palette, blur and element transparency"
+        },
+        "de": {
+          "name": "Benutzerdefiniert",
+          "description": "Eigene Palette, Unschärfe und Transparenz der Elemente"
+        }
+      },
       "theme": {
         "radius": 28,
         "panelShape": "rounded",

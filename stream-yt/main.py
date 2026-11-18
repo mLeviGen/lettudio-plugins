@@ -37,6 +37,125 @@ from lettudio import Plugin
 
 p = Plugin()
 
+# Тексты для пользователя. Ключ — русская строка; язык приложения приходит в hello/lang.
+STRINGS = {
+    "en": {
+        "Музыка и потоки (YT / SoundCloud)": "Music and streams (YT / SoundCloud)",
+        "Поток / URL": "Stream / URL",
+        "Потоковое аудио": "Streaming audio",
+        "Воспроизвести URL или поиск": "Play URL or search",
+        "Добавить в очередь": "Add to queue",
+        "Скачать в медиатеку": "Download to library",
+        "Скачать текущий поток": "Download current stream",
+        "недавний": "recent",
+        "{source}: превышено время ожидания ({sec} с)": "{source}: timed out ({sec} s)",
+        "{source}: ошибка запуска yt-dlp ({e})": "{source}: failed to start yt-dlp ({e})",
+        "{source}: некорректный JSON ({e})": "{source}: invalid JSON ({e})",
+        "код возврата {code}": "exit code {code}",
+        "yt-dlp не найден в PATH. Установите yt-dlp для поиска и потоков.": "yt-dlp not found in PATH. Install yt-dlp for search and streaming.",
+        "yt-dlp не найден в PATH. Установите yt-dlp для поиска.": "yt-dlp not found in PATH. Install yt-dlp for search.",
+        "yt-dlp не найден в PATH. Установите yt-dlp для скачивания.": "yt-dlp not found in PATH. Install yt-dlp for downloading.",
+        "По запросу ничего не найдено": "Nothing found for this query",
+        "Пустой запрос": "Empty query",
+        "{source}: превышено время ожидания yt-dlp ({sec} с)": "{source}: yt-dlp timed out ({sec} s)",
+        "Ошибка запуска yt-dlp: {e}": "Failed to start yt-dlp: {e}",
+        "Некорректный JSON от yt-dlp: {e}": "Invalid JSON from yt-dlp: {e}",
+        "Неожиданный ответ yt-dlp": "Unexpected yt-dlp response",
+        "Найден длинный сборник или запись без длительности вместо трека. Уточните запрос или откройте нужную запись по ссылке.": "Found a long compilation or an entry without duration instead of a track. Refine the query or open the right entry by link.",
+        "Не удалось получить прямой URL аудиопотока": "Could not get a direct audio stream URL",
+        "Источник": "The source",
+        "{source} не ответил вовремя. Повторите запуск позже или выберите другую запись.": "{source} did not respond in time. Try again later or pick another entry.",
+        "SoundCloud не ответил. Ищу эту запись на YouTube...": "SoundCloud did not respond. Looking for this track on YouTube...",
+        "Поиск в каталогах и потоках...": "Searching catalogs and streams...",
+        "Получение потока...": "Getting the stream...",
+        "Скачивание в медиатеку...": "Downloading to library...",
+        "В очереди: {label}": "Queued: {label}",
+        "Играет: {label}": "Playing: {label}",
+        "Ошибка доступа к медиатеке: {e}": "Library access error: {e}",
+        "Сначала выберите папку локальной медиатеки в настройках Lettudio": "First choose the local library folder in Lettudio settings",
+        "Ошибка папки медиатеки: {e}": "Library folder error: {e}",
+        "Ошибка скачивания: {e}": "Download error: {e}",
+        "Не найден подходящий трек: {e}": "No suitable track found: {e}",
+        "Превышено время скачивания ({sec} с)": "Download timed out ({sec} s)",
+        "Файл не найден после скачивания": "File not found after download",
+        "Скачано в медиатеку: {title}": "Downloaded to library: {title}",
+        "Файл скачан, но не проиндексирован: {e}": "File downloaded but not indexed: {e}",
+        "Нет данных о треке": "No track data",
+        "Трек уже находится в локальной медиатеке": "The track is already in the local library",
+        "У этого трека нет потоковой ссылки для скачивания": "This track has no stream link to download",
+        "Не найдена исходная ссылка трека": "Source link of the track not found",
+        "Нет данных для поиска потока": "No data to look up the stream",
+        "Воспроизвести поток": "Play stream",
+        "URL (YouTube, радио, .mp3) или текст для поиска": "URL (YouTube, radio, .mp3) or search text",
+        "Не передана ссылка для воспроизведения": "No link to play was provided",
+        "Не передана ссылка для скачивания": "No link to download was provided",
+        "https://... или исполнитель — название": "https://... or artist — title",
+        "Добавить поток в очередь": "Add stream to queue",
+        "Трек не выбран": "No track selected",
+        "Сейчас ничего не играет": "Nothing is playing right now",
+        "Запись устарела, обновите список": "This entry is outdated, refresh the list",
+        "Не найдена ссылка для этого потока": "No link found for this stream",
+    },
+    "de": {
+        "Музыка и потоки (YT / SoundCloud)": "Musik und Streams (YT / SoundCloud)",
+        "Поток / URL": "Stream / URL",
+        "Потоковое аудио": "Audio-Streaming",
+        "Воспроизвести URL или поиск": "URL abspielen oder suchen",
+        "Добавить в очередь": "Zur Warteschlange hinzufügen",
+        "Скачать в медиатеку": "In die Mediathek herunterladen",
+        "Скачать текущий поток": "Aktuellen Stream herunterladen",
+        "недавний": "zuletzt",
+        "{source}: превышено время ожидания ({sec} с)": "{source}: Zeitüberschreitung ({sec} s)",
+        "{source}: ошибка запуска yt-dlp ({e})": "{source}: yt-dlp konnte nicht gestartet werden ({e})",
+        "{source}: некорректный JSON ({e})": "{source}: ungültiges JSON ({e})",
+        "код возврата {code}": "Exit-Code {code}",
+        "yt-dlp не найден в PATH. Установите yt-dlp для поиска и потоков.": "yt-dlp wurde im PATH nicht gefunden. Installiere yt-dlp für Suche und Streaming.",
+        "yt-dlp не найден в PATH. Установите yt-dlp для поиска.": "yt-dlp wurde im PATH nicht gefunden. Installiere yt-dlp für die Suche.",
+        "yt-dlp не найден в PATH. Установите yt-dlp для скачивания.": "yt-dlp wurde im PATH nicht gefunden. Installiere yt-dlp zum Herunterladen.",
+        "По запросу ничего не найдено": "Zu dieser Anfrage wurde nichts gefunden",
+        "Пустой запрос": "Leere Anfrage",
+        "{source}: превышено время ожидания yt-dlp ({sec} с)": "{source}: Zeitüberschreitung bei yt-dlp ({sec} s)",
+        "Ошибка запуска yt-dlp: {e}": "yt-dlp konnte nicht gestartet werden: {e}",
+        "Некорректный JSON от yt-dlp: {e}": "Ungültiges JSON von yt-dlp: {e}",
+        "Неожиданный ответ yt-dlp": "Unerwartete Antwort von yt-dlp",
+        "Найден длинный сборник или запись без длительности вместо трека. Уточните запрос или откройте нужную запись по ссылке.": "Statt eines Titels wurde ein langer Sampler oder ein Eintrag ohne Dauer gefunden. Präzisiere die Anfrage oder öffne den passenden Eintrag per Link.",
+        "Не удалось получить прямой URL аудиопотока": "Die direkte Audio-Stream-URL konnte nicht ermittelt werden",
+        "Источник": "Die Quelle",
+        "{source} не ответил вовремя. Повторите запуск позже или выберите другую запись.": "{source} hat nicht rechtzeitig geantwortet. Versuche es später erneut oder wähle einen anderen Eintrag.",
+        "SoundCloud не ответил. Ищу эту запись на YouTube...": "SoundCloud hat nicht geantwortet. Suche den Titel auf YouTube...",
+        "Поиск в каталогах и потоках...": "Suche in Katalogen und Streams...",
+        "Получение потока...": "Stream wird abgerufen...",
+        "Скачивание в медиатеку...": "Download in die Mediathek...",
+        "В очереди: {label}": "In der Warteschlange: {label}",
+        "Играет: {label}": "Läuft: {label}",
+        "Ошибка доступа к медиатеке: {e}": "Zugriffsfehler auf die Mediathek: {e}",
+        "Сначала выберите папку локальной медиатеки в настройках Lettudio": "Wähle zuerst den Ordner der lokalen Mediathek in den Lettudio-Einstellungen",
+        "Ошибка папки медиатеки: {e}": "Fehler beim Mediathek-Ordner: {e}",
+        "Ошибка скачивания: {e}": "Download-Fehler: {e}",
+        "Не найден подходящий трек: {e}": "Kein passender Titel gefunden: {e}",
+        "Превышено время скачивания ({sec} с)": "Zeitüberschreitung beim Download ({sec} s)",
+        "Файл не найден после скачивания": "Datei nach dem Download nicht gefunden",
+        "Скачано в медиатеку: {title}": "In die Mediathek heruntergeladen: {title}",
+        "Файл скачан, но не проиндексирован: {e}": "Datei heruntergeladen, aber nicht indiziert: {e}",
+        "Нет данных о треке": "Keine Titeldaten",
+        "Трек уже находится в локальной медиатеке": "Der Titel ist bereits in der lokalen Mediathek",
+        "У этого трека нет потоковой ссылки для скачивания": "Dieser Titel hat keinen Stream-Link zum Herunterladen",
+        "Не найдена исходная ссылка трека": "Ursprungslink des Titels nicht gefunden",
+        "Нет данных для поиска потока": "Keine Daten zur Stream-Suche",
+        "Воспроизвести поток": "Stream abspielen",
+        "URL (YouTube, радио, .mp3) или текст для поиска": "URL (YouTube, Radio, .mp3) oder Suchtext",
+        "Не передана ссылка для воспроизведения": "Es wurde kein Link zum Abspielen übergeben",
+        "Не передана ссылка для скачивания": "Es wurde kein Link zum Herunterladen übergeben",
+        "https://... или исполнитель — название": "https://... oder Interpret — Titel",
+        "Добавить поток в очередь": "Stream zur Warteschlange hinzufügen",
+        "Трек не выбран": "Kein Titel ausgewählt",
+        "Сейчас ничего не играет": "Gerade läuft nichts",
+        "Запись устарела, обновите список": "Der Eintrag ist veraltet, aktualisiere die Liste",
+        "Не найдена ссылка для этого потока": "Für diesen Stream wurde kein Link gefunden",
+    },
+}
+T = p.translator(STRINGS)
+
 PLUGIN_DIR = Path(__file__).resolve().parent
 RECENT_FILE = PLUGIN_DIR / "recent.json"
 MAX_RECENT_HOME = 5
@@ -566,19 +685,19 @@ def _run_ytdlp_search(yt_dlp, search_expr, source_name):
     try:
         proc = _run_subprocess(cmd, timeout=SEARCH_TIMEOUT_SEC)
     except subprocess.TimeoutExpired:
-        return [], f"{source_name}: превышено время ожидания ({SEARCH_TIMEOUT_SEC} с)"
+        return [], T("{source}: превышено время ожидания ({sec} с)", source=source_name, sec=SEARCH_TIMEOUT_SEC)
     except OSError as e:
-        return [], f"{source_name}: ошибка запуска yt-dlp ({e})"
+        return [], T("{source}: ошибка запуска yt-dlp ({e})", source=source_name, e=e)
 
     if proc.returncode != 0:
         err = (proc.stderr or proc.stdout or "").strip().splitlines()
-        msg = err[-1] if err else f"код возврата {proc.returncode}"
+        msg = err[-1] if err else T("код возврата {code}", code=proc.returncode)
         return [], f"{source_name}: {msg}"
 
     try:
         data = json.loads(proc.stdout)
     except ValueError as e:
-        return [], f"{source_name}: некорректный JSON ({e})"
+        return [], T("{source}: некорректный JSON ({e})", source=source_name, e=e)
 
     entries = data.get("entries") if isinstance(data, dict) else None
     if not isinstance(entries, list):
@@ -764,10 +883,10 @@ def _search_streams_and_rank(raw_query, yt_dlp, youtube_only=False):
 def _find_best_stream_match(raw_query):
     yt_dlp = shutil.which("yt-dlp")
     if not yt_dlp:
-        raise RuntimeError("yt-dlp не найден в PATH. Установите yt-dlp для поиска и потоков.")
+        raise RuntimeError(T("yt-dlp не найден в PATH. Установите yt-dlp для поиска и потоков."))
     items = _search_streams_and_rank(raw_query, yt_dlp)
     if not items:
-        raise RuntimeError("По запросу ничего не найдено")
+        raise RuntimeError(T("По запросу ничего не найдено"))
     top = items[0]
     return top["arg"], top.get("_meta") or {}
 
@@ -870,20 +989,20 @@ def _get_recent_snapshot():
 
 def refresh_home():
     items = [
-        {"title": "Воспроизвести URL или поиск", "action": "play_prompt"},
-        {"title": "Добавить в очередь", "action": "queue_prompt"},
-        {"title": "Скачать в медиатеку", "action": "download_prompt"},
-        {"title": "Скачать текущий поток", "action": "save_current"},
+        {"title": T("Воспроизвести URL или поиск"), "action": "play_prompt"},
+        {"title": T("Добавить в очередь"), "action": "queue_prompt"},
+        {"title": T("Скачать в медиатеку"), "action": "download_prompt"},
+        {"title": T("Скачать текущий поток"), "action": "save_current"},
     ]
     for idx, entry in enumerate(_get_recent_snapshot()):
         title = entry.get("title") or entry.get("webpage_url") or "Поток"
         artist = (entry.get("artist") or "").strip()
         items.append({
             "title": title,
-            "subtitle": artist if artist else "недавний",
+            "subtitle": artist if artist else T("недавний"),
             "action": f"recent:{idx}",
         })
-    p.home_section("stream_yt", "Потоковое аудио", items)
+    p.home_section("stream_yt", T("Потоковое аудио"), items)
 
 
 def _run_subprocess(args, timeout):
@@ -966,14 +1085,14 @@ def _enrich_from_info_if_uncached(info, raw_query, page_url):
 
 def _is_source_timeout(error):
     message = str(error).lower()
-    return any(s in message for s in ("timed out", "timeout", "время ожидания"))
+    return any(s in message for s in ("timed out", "timeout", "время ожидания", "zeitüberschreitung"))
 
 
 def _playback_error(error):
     message = str(error)
     if _is_source_timeout(error):
-        source = "SoundCloud" if "soundcloud" in message.lower() else "Источник"
-        return f"{source} не ответил вовремя. Повторите запуск позже или выберите другую запись."
+        source = "SoundCloud" if "soundcloud" in message.lower() else T("Источник")
+        return T("{source} не ответил вовремя. Повторите запуск позже или выберите другую запись.", source=source)
     return message
 
 
@@ -987,7 +1106,7 @@ def _try_youtube_alternative(source_url, meta, error, yt_dlp):
     duration = int(meta.get("durationMs") or 0)
     if not artist or not title or artist in ("поток", "неизвестный исполнитель") or duration <= 0:
         return None
-    p.status("SoundCloud не ответил. Ищу эту запись на YouTube...")
+    p.status(T("SoundCloud не ответил. Ищу эту запись на YouTube..."))
     try:
         matches = _search_streams_and_rank(f"{meta['artist']} {meta['title']}", yt_dlp, youtube_only=True)
         for item in matches:
@@ -1007,7 +1126,7 @@ def _try_youtube_alternative(source_url, meta, error, yt_dlp):
 def _resolve_query(raw_query):
     raw_query = (raw_query or "").strip()
     if not raw_query:
-        raise ValueError("Пустой запрос")
+        raise ValueError(T("Пустой запрос"))
 
     yt_dlp = shutil.which("yt-dlp")
     is_url = _is_http_url(raw_query)
@@ -1018,7 +1137,7 @@ def _resolve_query(raw_query):
         return _direct_track(raw_query)
 
     if not yt_dlp:
-        raise RuntimeError("yt-dlp не найден в PATH. Установите yt-dlp для поиска и потоков.")
+        raise RuntimeError(T("yt-dlp не найден в PATH. Установите yt-dlp для поиска и потоков."))
 
     cached_meta = None
     target_source = raw_query
@@ -1032,17 +1151,17 @@ def _resolve_query(raw_query):
     try:
         proc = _run_subprocess(cmd, timeout=RESOLVE_TIMEOUT_SEC)
     except subprocess.TimeoutExpired:
-        error = f"{target_source}: превышено время ожидания yt-dlp ({RESOLVE_TIMEOUT_SEC} с)"
+        error = T("{source}: превышено время ожидания yt-dlp ({sec} с)", source=target_source, sec=RESOLVE_TIMEOUT_SEC)
         alternative = _try_youtube_alternative(target_source, cached_meta, error, yt_dlp)
         if alternative is not None:
             return alternative
         raise RuntimeError(error)
     except OSError as e:
-        raise RuntimeError(f"Ошибка запуска yt-dlp: {e}")
+        raise RuntimeError(T("Ошибка запуска yt-dlp: {e}", e=e))
 
     if proc.returncode != 0:
         err = (proc.stderr or proc.stdout or "").strip().splitlines()
-        msg = err[-1] if err else f"код возврата {proc.returncode}"
+        msg = err[-1] if err else T("код возврата {code}", code=proc.returncode)
         alternative = _try_youtube_alternative(target_source, cached_meta, msg, yt_dlp)
         if alternative is not None:
             return alternative
@@ -1051,20 +1170,20 @@ def _resolve_query(raw_query):
     try:
         data = json.loads(proc.stdout)
     except ValueError as e:
-        raise RuntimeError(f"Некорректный JSON от yt-dlp: {e}")
+        raise RuntimeError(T("Некорректный JSON от yt-dlp: {e}", e=e))
 
     if isinstance(data, dict) and "entries" in data:
         entries = [e for e in (data.get("entries") or []) if isinstance(e, dict)]
         if not entries:
-            raise RuntimeError("По запросу ничего не найдено")
+            raise RuntimeError(T("По запросу ничего не найдено"))
         info = entries[0]
     elif isinstance(data, dict):
         info = data
     else:
-        raise RuntimeError("Неожиданный ответ yt-dlp")
+        raise RuntimeError(T("Неожиданный ответ yt-dlp"))
 
     if not is_url and not _accept_search_entry(info, raw_query):
-        raise RuntimeError("Найден длинный сборник или запись без длительности вместо трека. Уточните запрос или откройте нужную запись по ссылке.")
+        raise RuntimeError(T("Найден длинный сборник или запись без длительности вместо трека. Уточните запрос или откройте нужную запись по ссылке."))
 
     stream_url = info.get("url")
     if not stream_url:
@@ -1072,7 +1191,7 @@ def _resolve_query(raw_query):
         if req_formats and isinstance(req_formats[0], dict):
             stream_url = req_formats[0].get("url")
     if not stream_url or not _is_http_url(str(stream_url)):
-        raise RuntimeError("Не удалось получить прямой URL аудиопотока")
+        raise RuntimeError(T("Не удалось получить прямой URL аудиопотока"))
 
     webpage_url = (
         info.get("webpage_url")
@@ -1145,7 +1264,7 @@ def _search_yt(raw_query):
 
     yt_dlp = shutil.which("yt-dlp")
     if not yt_dlp:
-        raise RuntimeError("yt-dlp не найден в PATH. Установите yt-dlp для поиска.")
+        raise RuntimeError(T("yt-dlp не найден в PATH. Установите yt-dlp для поиска."))
 
     if query.startswith(("ytsearch", "scsearch")):
         entries, err = _run_ytdlp_search(yt_dlp, query, "yt-dlp")
@@ -1184,7 +1303,7 @@ def _search_yt(raw_query):
 
 
 def _play_or_queue(raw_query, queue_mode=False):
-    p.status("Поиск в каталогах и потоках...")
+    p.status(T("Поиск в каталогах и потоках..."))
     try:
         track, webpage_url, is_direct = _resolve_query(raw_query)
     except Exception as e:
@@ -1201,11 +1320,11 @@ def _play_or_queue(raw_query, queue_mode=False):
     if queue_mode:
         p.queue_add([track])
         p.log(f"Добавлено в очередь: {label} ({webpage_url})")
-        p.toast(f"В очереди: {label}")
+        p.toast(T("В очереди: {label}", label=label))
     else:
-        p.play_tracks([track], title="Потоковое аудио")
+        p.play_tracks([track], title=T("Потоковое аудио"))
         p.log(f"Запуск потока: {label} ({webpage_url})")
-        p.toast(f"Играет: {label}")
+        p.toast(T("Играет: {label}", label=label))
 
 
 def _sanitize_filename(name):
@@ -1400,7 +1519,7 @@ def _download_to_library(raw_query):
     if not raw_query:
         return
 
-    p.status("Скачивание в медиатеку...")
+    p.status(T("Скачивание в медиатеку..."))
     try:
         _download_to_library_impl(raw_query)
     finally:
@@ -1412,19 +1531,19 @@ def _download_to_library_impl(raw_query):
         lib_dir = p.library_folder()
     except Exception as e:
         p.log(f"Не удалось получить папку медиатеки: {e}")
-        p.toast(f"Ошибка доступа к медиатеке: {e}")
+        p.toast(T("Ошибка доступа к медиатеке: {e}", e=e))
         return
 
     if not lib_dir:
         p.log("Папка медиатеки не задана")
-        p.toast("Сначала выберите папку локальной медиатеки в настройках Lettudio")
+        p.toast(T("Сначала выберите папку локальной медиатеки в настройках Lettudio"))
         return
 
     try:
         Path(lib_dir).mkdir(parents=True, exist_ok=True)
     except OSError as e:
         p.log(f"Не удалось создать папку медиатеки '{lib_dir}': {e}")
-        p.toast(f"Ошибка папки медиатеки: {e}")
+        p.toast(T("Ошибка папки медиатеки: {e}", e=e))
         return
 
     yt_dlp = shutil.which("yt-dlp")
@@ -1435,10 +1554,10 @@ def _download_to_library_impl(raw_query):
                 filepath = _download_direct_fallback(raw_query, lib_dir)
             except Exception as e:
                 p.log(f"Ошибка скачивания '{raw_query}': {e}")
-                p.toast(f"Ошибка скачивания: {e}")
+                p.toast(T("Ошибка скачивания: {e}", e=e))
                 return
         else:
-            msg = "yt-dlp не найден в PATH. Установите yt-dlp для скачивания."
+            msg = T("yt-dlp не найден в PATH. Установите yt-dlp для скачивания.")
             p.log(msg)
             p.toast(msg)
             return
@@ -1450,7 +1569,7 @@ def _download_to_library_impl(raw_query):
                 source, meta = _find_best_stream_match(raw_query)
             except Exception as e:
                 p.log(f"Поиск не удался: {e}")
-                p.toast(f"Не найден подходящий трек: {e}")
+                p.toast(T("Не найден подходящий трек: {e}", e=e))
                 return
         else:
             source = _format_query(raw_query)
@@ -1497,12 +1616,12 @@ def _download_to_library_impl(raw_query):
         try:
             proc = _run_subprocess(cmd, timeout=DOWNLOAD_TIMEOUT_SEC)
         except subprocess.TimeoutExpired:
-            msg = f"Превышено время скачивания ({DOWNLOAD_TIMEOUT_SEC} с)"
+            msg = T("Превышено время скачивания ({sec} с)", sec=DOWNLOAD_TIMEOUT_SEC)
             p.log(msg)
             p.toast(msg)
             return
         except OSError as e:
-            msg = f"Ошибка запуска yt-dlp: {e}"
+            msg = T("Ошибка запуска yt-dlp: {e}", e=e)
             p.log(msg)
             p.toast(msg)
             return
@@ -1522,14 +1641,14 @@ def _download_to_library_impl(raw_query):
                 proc = _run_subprocess(fallback_cmd, timeout=DOWNLOAD_TIMEOUT_SEC)
             except Exception as e:
                 p.log(f"Ошибка fallback-загрузки: {e}")
-                p.toast(f"Ошибка скачивания: {e}")
+                p.toast(T("Ошибка скачивания: {e}", e=e))
                 return
 
         if proc.returncode != 0:
             err = (proc.stderr or proc.stdout or "").strip().splitlines()
-            msg = err[-1] if err else f"код возврата {proc.returncode}"
+            msg = err[-1] if err else T("код возврата {code}", code=proc.returncode)
             p.log(f"Ошибка скачивания '{source}': {msg}")
-            p.toast(f"Ошибка скачивания: {msg}")
+            p.toast(T("Ошибка скачивания: {e}", e=msg))
             return
 
         lines = [ln.strip() for ln in (proc.stdout or "").splitlines() if ln.strip()]
@@ -1543,7 +1662,7 @@ def _download_to_library_impl(raw_query):
 
         if not filepath or not os.path.isfile(filepath):
             p.log(f"Не удалось определить путь скачанного файла. stdout={proc.stdout!r}")
-            p.toast("Файл не найден после скачивания")
+            p.toast(T("Файл не найден после скачивания"))
             return
 
         if meta:
@@ -1553,10 +1672,10 @@ def _download_to_library_impl(raw_query):
         added = p.add_file(filepath)
         title = (added or {}).get("title") or (meta or {}).get("title") or Path(filepath).name
         p.log(f"Добавлен в медиатеку: {filepath}")
-        p.toast(f"Скачано в медиатеку: {title}")
+        p.toast(T("Скачано в медиатеку: {title}", title=title))
     except Exception as e:
         p.log(f"Файл скачан ({filepath}), но add_file вернул ошибку: {e}")
-        p.toast(f"Файл скачан, но не проиндексирован: {e}")
+        p.toast(T("Файл скачан, но не проиндексирован: {e}", e=e))
 
 
 def _prompt_text(title, hint):
@@ -1572,31 +1691,41 @@ def _prompt_text(title, hint):
 
 def _download_from_track(track):
     if not isinstance(track, dict):
-        p.toast("Нет данных о треке")
+        p.toast(T("Нет данных о треке"))
         return
     if track.get("path"):
-        p.toast("Трек уже находится в локальной медиатеке")
+        p.toast(T("Трек уже находится в локальной медиатеке"))
         return
     stream_url = track.get("streamUrl")
     if not stream_url:
-        p.toast("У этого трека нет потоковой ссылки для скачивания")
+        p.toast(T("У этого трека нет потоковой ссылки для скачивания"))
         return
     source_url = _lookup_source_url(stream_url)
     if not source_url:
-        p.toast("Не найдена исходная ссылка трека")
+        p.toast(T("Не найдена исходная ссылка трека"))
         return
     _download_to_library(source_url)
+
+
+def register_ui():
+    """Кнопки, поиск и секция на главной — на языке интерфейса (вызывается и при смене языка)."""
+    p.add_action("stream", T("Поток / URL"), icon="cloud", where="search")
+    # Пункт меню трека «Скачать в медиатеку» убран: в Lettudio есть встроенное
+    # «Скачать на устройство» (кладёт файл туда же и работает на телефоне).
+    p.register_search(T("Музыка и потоки (YT / SoundCloud)"))
+    refresh_home()
 
 
 @p.on("hello")
 def on_hello(_):
     _load_recent()
-    p.add_action("stream", "Поток / URL", icon="cloud", where="search")
-    # Пункт меню трека «Скачать в медиатеку» убран: в Lettudio есть встроенное
-    # «Скачать на устройство» (кладёт файл туда же и работает на телефоне).
-    p.register_search("Музыка и потоки (YT / SoundCloud)")
-    refresh_home()
+    register_ui()
     p.log("Плагин stream-yt готов")
+
+
+@p.on("lang")
+def on_lang(_):
+    register_ui()
 
 
 @p.on("search")
@@ -1608,7 +1737,7 @@ def on_search(ev):
     if not query:
         p.reply(req_id, ok=True, data=[])
         return
-    p.status("Поиск в каталогах и потоках...")
+    p.status(T("Поиск в каталогах и потоках..."))
     try:
         results = _search_yt(query)
         p.reply(req_id, ok=True, data=results)
@@ -1651,10 +1780,10 @@ def on_resolve_track(ev):
             artist = ""
         target = f"{artist} {title}".strip()
     if not target:
-        p.reply(req_id, ok=False, error="Нет данных для поиска потока")
+        p.reply(req_id, ok=False, error=T("Нет данных для поиска потока"))
         return
 
-    p.status("Получение потока...")
+    p.status(T("Получение потока..."))
     try:
         if _is_http_url(target) and not _cache_meta_get(target):
             _cache_meta_put(target, track)
@@ -1683,7 +1812,7 @@ def on_resolve_track(ev):
 @p.on_action("stream")
 def on_stream_action(ev):
     arg = (ev.get("arg") or "").strip()
-    q = arg or _prompt_text("Воспроизвести поток", "URL (YouTube, радио, .mp3) или текст для поиска")
+    q = arg or _prompt_text(T("Воспроизвести поток"), T("URL (YouTube, радио, .mp3) или текст для поиска"))
     if q:
         _play_or_queue(q, queue_mode=False)
 
@@ -1692,7 +1821,7 @@ def on_stream_action(ev):
 def on_play_url(ev):
     url = (ev.get("arg") or "").strip()
     if not url:
-        p.toast("Не передана ссылка для воспроизведения")
+        p.toast(T("Не передана ссылка для воспроизведения"))
         return
     _play_or_queue(url, queue_mode=False)
 
@@ -1701,28 +1830,28 @@ def on_play_url(ev):
 def on_download_url(ev):
     url = (ev.get("arg") or "").strip()
     if not url:
-        p.toast("Не передана ссылка для скачивания")
+        p.toast(T("Не передана ссылка для скачивания"))
         return
     _download_to_library(url)
 
 
 @p.on_action("play_prompt")
 def on_play_prompt(_):
-    q = _prompt_text("Воспроизвести URL или поиск", "https://... или исполнитель — название")
+    q = _prompt_text(T("Воспроизвести URL или поиск"), T("https://... или исполнитель — название"))
     if q:
         _play_or_queue(q, queue_mode=False)
 
 
 @p.on_action("queue_prompt")
 def on_queue_prompt(_):
-    q = _prompt_text("Добавить поток в очередь", "https://... или исполнитель — название")
+    q = _prompt_text(T("Добавить поток в очередь"), T("https://... или исполнитель — название"))
     if q:
         _play_or_queue(q, queue_mode=True)
 
 
 @p.on_action("download_prompt")
 def on_download_prompt(_):
-    q = _prompt_text("Скачать в медиатеку", "https://... или исполнитель — название")
+    q = _prompt_text(T("Скачать в медиатеку"), T("https://... или исполнитель — название"))
     if q:
         _download_to_library(q)
 
@@ -1737,7 +1866,7 @@ def on_save_track(ev):
         except Exception:
             track = (p.state or {}).get("track")
     if not track:
-        p.toast("Трек не выбран")
+        p.toast(T("Трек не выбран"))
         return
     _download_from_track(track)
 
@@ -1752,7 +1881,7 @@ def on_save_current(ev):
         except Exception:
             track = (p.state or {}).get("track")
     if not track:
-        p.toast("Сейчас ничего не играет")
+        p.toast(T("Сейчас ничего не играет"))
         return
     _download_from_track(track)
 
@@ -1761,13 +1890,13 @@ def _make_recent_handler(idx):
     def _handler(_):
         items = _get_recent_snapshot()
         if idx >= len(items):
-            p.toast("Запись устарела, обновите список")
+            p.toast(T("Запись устарела, обновите список"))
             refresh_home()
             return
         entry = items[idx]
         source_url = entry.get("webpage_url") or entry.get("streamUrl")
         if not source_url:
-            p.toast("Не найдена ссылка для этого потока")
+            p.toast(T("Не найдена ссылка для этого потока"))
             return
         _play_or_queue(source_url, queue_mode=False)
     return _handler

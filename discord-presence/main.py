@@ -17,6 +17,15 @@ OP_HANDSHAKE, OP_FRAME, OP_CLOSE = 0, 1, 2
 ACTIVITY_LISTENING = 2
 
 
+# Язык интерфейса приложения (ru | en | de): LETTUDIO_LANG, затем события hello / lang.
+LANG = (os.environ.get("LETTUDIO_LANG") or "ru").lower()
+MSG_FILL_CLIENT_ID = {
+    "ru": "Discord Presence: заполни client_id в config.json",
+    "en": "Discord Presence: fill in client_id in config.json",
+    "de": "Discord Presence: client_id in config.json eintragen",
+}
+
+
 def log(msg):
     print(msg, file=sys.stderr, flush=True)
 
@@ -122,11 +131,17 @@ def build_activity(msg, cfg):
     return act
 
 
+def toast_missing_client_id():
+    text = MSG_FILL_CLIENT_ID.get(LANG, MSG_FILL_CLIENT_ID["ru"])
+    print(json.dumps({"cmd": "toast", "text": text}, ensure_ascii=False), flush=True)
+
+
 def main():
+    global LANG
     cfg = load_config()
     if not cfg.get("client_id"):
         log("Заполни client_id в config.json (Discord Developer Portal → New Application).")
-        print(json.dumps({"cmd": "toast", "text": "Discord Presence: заполни client_id в config.json"}), flush=True)
+        toast_missing_client_id()
     ipc = DiscordIPC(cfg.get("client_id", ""))
 
     for line in sys.stdin:
@@ -135,6 +150,12 @@ def main():
         except ValueError:
             continue
         kind = msg.get("type")
+        if kind in ("hello", "lang") and isinstance(msg.get("lang"), str) and msg["lang"]:
+            new_lang = msg["lang"].lower()
+            if kind == "hello" and not cfg.get("client_id") and new_lang != LANG:
+                LANG = new_lang
+                toast_missing_client_id()  # hello приходит после старта: повторим подсказку на нужном языке
+            LANG = new_lang
         if kind == "bye":
             ipc.set_activity(None)
             ipc.close()

@@ -4,9 +4,19 @@
     {
       "id": "lettudio-themes",
       "name": "Темы Lettudio",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "type": "theme",
       "description": "Готовые темы (Antigravity, Discord, OLED, Spotify) и кастомная настройка цветов для ПК и телефона",
+      "i18n": {
+        "en": {
+          "name": "Lettudio Themes",
+          "description": "Ready-made themes (Antigravity, Discord, OLED, Spotify) and custom color settings for PC and phone"
+        },
+        "de": {
+          "name": "Lettudio-Themes",
+          "description": "Fertige Themes (Antigravity, Discord, OLED, Spotify) und eigene Farbeinstellungen für PC und Handy"
+        }
+      },
       "platforms": ["windows", "android"],
       "url": "https://raw.githubusercontent.com/mLeviGen/lettudio-plugins/main/lettudio-themes/plugin.json",
       "zipUrl": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/lettudio-themes.zip"
@@ -14,9 +24,19 @@
     {
       "id": "theme-oneui9",
       "name": "One UI 9",
-      "version": "2.2.1",
+      "version": "2.2.2",
       "type": "theme",
       "description": "Стиль Samsung One UI 9: чёрный фон и серые карточки, плавающая навигация, матовое стекло у навигации, плеера и меню; тёмная и светлая палитры",
+      "i18n": {
+        "en": {
+          "name": "One UI 9",
+          "description": "Samsung One UI 9 style: black background and gray cards, floating navigation, frosted glass on the navigation, player and menus; dark and light palettes"
+        },
+        "de": {
+          "name": "One UI 9",
+          "description": "Samsung-One-UI-9-Stil: schwarzer Hintergrund und graue Karten, schwebende Navigation, Milchglas bei Navigation, Player und Menüs; dunkle und helle Palette"
+        }
+      },
       "platforms": ["windows", "android"],
       "url": "https://raw.githubusercontent.com/mLeviGen/lettudio-plugins/main/theme-oneui9/plugin.json",
       "zipUrl": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/theme-oneui9.zip"
@@ -24,9 +44,19 @@
     {
       "id": "theme-material",
       "name": "Android Material",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "type": "theme",
       "description": "Стиль Android 16–18 (Material 3 Expressive): тональные палитры, крупные скругления, навигация с «таблеткой» и блюр у навигации, плеера, меню и шторок",
+      "i18n": {
+        "en": {
+          "name": "Android Material",
+          "description": "Android 16–18 style (Material 3 Expressive): tonal palettes, large rounded corners, pill navigation, and blur on the navigation, player, menus and sheets"
+        },
+        "de": {
+          "name": "Android Material",
+          "description": "Android-16–18-Stil (Material 3 Expressive): tonale Paletten, große Rundungen, Navigation mit „Pille“ und Unschärfe bei Navigation, Player, Menüs und Sheets"
+        }
+      },
       "platforms": ["windows", "android"],
       "url": "https://raw.githubusercontent.com/mLeviGen/lettudio-plugins/main/theme-material/plugin.json",
       "zipUrl": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/theme-material.zip"
@@ -34,36 +64,76 @@
     {
       "id": "theme-midnight",
       "name": "Midnight",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "type": "theme",
       "description": "Холодная тёмная тема — пример плагина-темы",
+      "i18n": {
+        "en": {
+          "name": "Midnight",
+          "description": "A cool dark theme — an example theme plugin"
+        },
+        "de": {
+          "name": "Midnight",
+          "description": "Ein kühles dunkles Theme — ein Beispiel für ein Theme-Plugin"
+        }
+      },
       "platforms": ["windows", "android"],
       "url": "https://raw.githubusercontent.com/mLeviGen/lettudio-plugins/main/theme-midnight/plugin.json"
     },
     {
       "id": "stream-yt",
       "name": "Поток и загрузка (yt-dlp)",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "type": "process",
       "description": "Потоковое воспроизведение аудио по URL или текстовому поиску через yt-dlp, история недавних потоков и скачивание по ссылке или запросу в медиатеку.",
+      "i18n": {
+        "en": {
+          "name": "Streaming and download (yt-dlp)",
+          "description": "Stream audio by URL or text search via yt-dlp, a history of recent streams, and downloading by link or query into the library."
+        },
+        "de": {
+          "name": "Streaming und Download (yt-dlp)",
+          "description": "Audio per URL oder Textsuche über yt-dlp streamen, Verlauf der letzten Streams und Download per Link oder Suchanfrage in die Mediathek."
+        }
+      },
       "platforms": ["windows"],
       "url": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/stream-yt.zip"
     },
     {
       "id": "discord-presence",
       "name": "Discord Presence",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "type": "process",
       "description": "Показывает текущий трек в статусе Discord («Слушает Lettudio»). Нужен client_id в config.json.",
+      "i18n": {
+        "en": {
+          "name": "Discord Presence",
+          "description": "Shows the current track in your Discord status (\"Listening to Lettudio\"). Needs a client_id in config.json."
+        },
+        "de": {
+          "name": "Discord Presence",
+          "description": "Zeigt den aktuellen Titel in deinem Discord-Status („Hört Lettudio“). Benötigt eine client_id in config.json."
+        }
+      },
       "platforms": ["windows"],
       "url": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/discord-presence.zip"
     },
     {
       "id": "sleep-timer",
       "name": "Таймер сна",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "type": "process",
       "description": "Ставит музыку на паузу через 15/30/60 минут. Кнопка в плеере и секция на главной — пример плагина.",
+      "i18n": {
+        "en": {
+          "name": "Sleep timer",
+          "description": "Pauses the music after 15/30/60 minutes. A button in the player and a section on the home screen — an example plugin."
+        },
+        "de": {
+          "name": "Schlaftimer",
+          "description": "Pausiert die Musik nach 15/30/60 Minuten. Eine Schaltfläche im Player und ein Bereich auf der Startseite — ein Beispiel-Plugin."
+        }
+      },
       "platforms": ["windows"],
       "url": "https://github.com/mLeviGen/lettudio-plugins/releases/latest/download/sleep-timer.zip"
     }
