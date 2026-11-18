@@ -4,17 +4,17 @@
     {
       "id": "lettudio-themes",
       "name": "Темы Lettudio",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "type": "theme",
-      "description": "Готовые темы (Antigravity, Discord, OLED, Spotify) и кастомная настройка цветов для ПК и телефона",
+      "description": "Готовые цветовые темы (Индиго, Сумерки, OLED, Изумруд и другие) и своя настройка цветов для ПК и телефона",
       "i18n": {
         "en": {
           "name": "Lettudio Themes",
-          "description": "Ready-made themes (Antigravity, Discord, OLED, Spotify) and custom color settings for PC and phone"
+          "description": "Ready-made color themes (Indigo, Dusk, OLED, Emerald and more) and custom colors for PC and phone"
         },
         "de": {
           "name": "Lettudio-Themes",
-          "description": "Fertige Themes (Antigravity, Discord, OLED, Spotify) und eigene Farbeinstellungen für PC und Handy"
+          "description": "Fertige Farbthemes (Indigo, Dämmerung, OLED, Smaragd und mehr) und eigene Farben für PC und Handy"
         }
       },
       "platforms": ["windows", "android"],

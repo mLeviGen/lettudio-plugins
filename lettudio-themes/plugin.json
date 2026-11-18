@@ -1,32 +1,32 @@
 {
   "id": "lettudio-themes",
   "name": "Темы Lettudio",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "type": "theme",
-  "description": "Готовые темы (Antigravity, Discord, OLED, Spotify) и кастомная настройка цветов для ПК и телефона",
+  "description": "Готовые цветовые темы (Индиго, Сумерки, OLED, Изумруд и другие) и своя настройка цветов для ПК и телефона",
   "i18n": {
     "en": {
       "name": "Lettudio Themes",
-      "description": "Ready-made themes (Antigravity, Discord, OLED, Spotify) and custom color settings for PC and phone"
+      "description": "Ready-made color themes (Indigo, Dusk, OLED, Emerald and more) and custom colors for PC and phone"
     },
     "de": {
       "name": "Lettudio-Themes",
-      "description": "Fertige Themes (Antigravity, Discord, OLED, Spotify) und eigene Farbeinstellungen für PC und Handy"
+      "description": "Fertige Farbthemes (Indigo, Dämmerung, OLED, Smaragd und mehr) und eigene Farben für PC und Handy"
     }
   },
   "customizable": true,
   "presets": [
     {
       "id": "antigravity",
-      "name": "Antigravity",
+      "name": "Индиго",
       "description": "Глубокий тёмный фон и сине-индиго акценты",
       "i18n": {
         "en": {
-          "name": "Antigravity",
+          "name": "Indigo",
           "description": "Deep dark background with blue-indigo accents"
         },
         "de": {
-          "name": "Antigravity",
+          "name": "Indigo",
           "description": "Tiefdunkler Hintergrund mit blau-indigofarbenen Akzenten"
         }
       },
@@ -48,27 +48,27 @@
     },
     {
       "id": "discord",
-      "name": "Discord",
-      "description": "Фирменная палитра Discord Dark и Blurple",
+      "name": "Сумерки",
+      "description": "Графитовый фон и сине-фиолетовые акценты",
       "i18n": {
         "en": {
-          "name": "Discord",
-          "description": "The signature Discord Dark and Blurple palette"
+          "name": "Dusk",
+          "description": "Graphite background with blue-violet accents"
         },
         "de": {
-          "name": "Discord",
-          "description": "Die typische Discord-Dark- und Blurple-Palette"
+          "name": "Dämmerung",
+          "description": "Graphitgrauer Hintergrund mit blauvioletten Akzenten"
         }
       },
       "theme": {
         "bg": "#1E1F22",
         "surface": "#2B2D31",
         "surfaceHi": "#383A40",
-        "fill": "#4752C4",
+        "fill": "#4A54C0",
         "text": "#F2F3F5",
         "muted": "#949BA4",
-        "accent": "#5865F2",
-        "coverA": "#5865F2",
+        "accent": "#6470F0",
+        "coverA": "#6470F0",
         "coverB": "#2B2D31",
         "radius": 14,
         "coverShape": "rounded",
@@ -87,7 +87,7 @@
         },
         "de": {
           "name": "OLED",
-          "description": "Reiner schwarzer Hintergrund (#000000) für AMOLED-Displays"
+          "description": "Reines Schwarz (#000000) für AMOLED-Displays"
         }
       },
       "theme": {
@@ -108,16 +108,16 @@
     },
     {
       "id": "spotify",
-      "name": "Spotify",
-      "description": "Тёмно-графитовый фон и фирменный зелёный акцент Spotify",
+      "name": "Изумруд",
+      "description": "Почти чёрный фон и сочный зелёный акцент",
       "i18n": {
         "en": {
-          "name": "Spotify",
-          "description": "Dark graphite background and the signature Spotify green accent"
+          "name": "Emerald",
+          "description": "Near-black background with a vivid green accent"
         },
         "de": {
-          "name": "Spotify",
-          "description": "Dunkel-graphitfarbener Hintergrund und das typische Spotify-Grün als Akzent"
+          "name": "Smaragd",
+          "description": "Fast schwarzer Hintergrund mit sattem Grün"
         }
       },
       "theme": {
@@ -127,10 +127,160 @@
         "fill": "#156333",
         "text": "#FFFFFF",
         "muted": "#B3B3B3",
-        "accent": "#1DB954",
-        "coverA": "#1DB954",
+        "accent": "#2BC46A",
+        "coverA": "#2BC46A",
         "coverB": "#191414",
         "radius": 14,
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    },
+    {
+      "id": "sunset",
+      "name": "Закат",
+      "description": "Тёплый тёмный фон и кораллово-оранжевый акцент",
+      "i18n": {
+        "en": {
+          "name": "Sunset",
+          "description": "Warm dark background with a coral-orange accent"
+        },
+        "de": {
+          "name": "Sonnenuntergang",
+          "description": "Warmer dunkler Hintergrund mit korallenorangem Akzent"
+        }
+      },
+      "theme": {
+        "bg": "#16110F",
+        "surface": "#201916",
+        "surfaceHi": "#2C221E",
+        "fill": "#6B3A2A",
+        "text": "#F5EDE8",
+        "muted": "#A8968C",
+        "accent": "#FF8A5B",
+        "coverA": "#FF8A5B",
+        "coverB": "#5A2A1E",
+        "radius": 18,
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    },
+    {
+      "id": "ocean",
+      "name": "Океан",
+      "description": "Глубокий сине-зелёный фон и бирюзовый акцент",
+      "i18n": {
+        "en": {
+          "name": "Ocean",
+          "description": "Deep blue-green background with a turquoise accent"
+        },
+        "de": {
+          "name": "Ozean",
+          "description": "Tiefer blaugrüner Hintergrund mit türkisem Akzent"
+        }
+      },
+      "theme": {
+        "bg": "#0B1417",
+        "surface": "#111D21",
+        "surfaceHi": "#1A2A30",
+        "fill": "#1F5560",
+        "text": "#E6F2F4",
+        "muted": "#86A3AA",
+        "accent": "#4FD1C5",
+        "coverA": "#4FD1C5",
+        "coverB": "#164048",
+        "radius": 18,
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    },
+    {
+      "id": "sakura",
+      "name": "Сакура",
+      "description": "Мягкий тёмный фон и розовый акцент",
+      "i18n": {
+        "en": {
+          "name": "Sakura",
+          "description": "Soft dark background with a pink accent"
+        },
+        "de": {
+          "name": "Sakura",
+          "description": "Sanfter dunkler Hintergrund mit rosa Akzent"
+        }
+      },
+      "theme": {
+        "bg": "#161214",
+        "surface": "#201A1D",
+        "surfaceHi": "#2C2328",
+        "fill": "#6A3A52",
+        "text": "#F6ECF0",
+        "muted": "#A8949D",
+        "accent": "#F48FB1",
+        "coverA": "#F48FB1",
+        "coverB": "#5A2A40",
+        "radius": 20,
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    },
+    {
+      "id": "mocha",
+      "name": "Мокко",
+      "description": "Кофейные оттенки и тёплый карамельный акцент",
+      "i18n": {
+        "en": {
+          "name": "Mocha",
+          "description": "Coffee tones with a warm caramel accent"
+        },
+        "de": {
+          "name": "Mokka",
+          "description": "Kaffeetöne mit warmem Karamellakzent"
+        }
+      },
+      "theme": {
+        "bg": "#15120F",
+        "surface": "#1F1A16",
+        "surfaceHi": "#2B241F",
+        "fill": "#5C4330",
+        "text": "#F1EAE3",
+        "muted": "#A39686",
+        "accent": "#D9A066",
+        "coverA": "#D9A066",
+        "coverB": "#4A3324",
+        "radius": 18,
+        "coverShape": "rounded",
+        "density": "normal",
+        "navLabels": "active"
+      }
+    },
+    {
+      "id": "forest",
+      "name": "Лес",
+      "description": "Тёмно-зелёный фон и спокойный мятный акцент",
+      "i18n": {
+        "en": {
+          "name": "Forest",
+          "description": "Dark green background with a calm mint accent"
+        },
+        "de": {
+          "name": "Wald",
+          "description": "Dunkelgrüner Hintergrund mit ruhigem Minzakzent"
+        }
+      },
+      "theme": {
+        "bg": "#0E1310",
+        "surface": "#151C17",
+        "surfaceHi": "#1F2922",
+        "fill": "#2F5440",
+        "text": "#E8F0EA",
+        "muted": "#8DA394",
+        "accent": "#7FD3A3",
+        "coverA": "#7FD3A3",
+        "coverB": "#22402F",
+        "radius": 18,
         "coverShape": "rounded",
         "density": "normal",
         "navLabels": "active"
