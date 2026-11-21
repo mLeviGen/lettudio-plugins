@@ -1759,6 +1759,15 @@ def _is_ephemeral_url(url):
     )
 
 
+def _fallback_query(track):
+    """«Исполнитель Название» для поиска, когда ссылка трека не открывается."""
+    title = (track.get("title") or "").strip()
+    artist = (track.get("artist") or "").strip()
+    if artist in ("Поток", "Неизвестный исполнитель"):
+        artist = ""
+    return f"{artist} {title}".strip() if title else ""
+
+
 @p.on("resolve_track")
 def on_resolve_track(ev):
     req_id = ev.get("reqId")
@@ -1787,7 +1796,16 @@ def on_resolve_track(ev):
     try:
         if _is_http_url(target) and not _cache_meta_get(target):
             _cache_meta_put(target, track)
-        resolved_track, webpage_url, is_direct = _resolve_query(target)
+        try:
+            resolved_track, webpage_url, is_direct = _resolve_query(target)
+        except Exception as first_error:
+            # Сохранённая ссылка больше не работает (ролик удалён или закрыт, сбой
+            # сети у одного сервиса) — ищем тот же трек по исполнителю и названию.
+            query = _fallback_query(track) if _is_http_url(target) else ""
+            if not query:
+                raise
+            p.log(f"Ссылка '{target}' не открылась ({first_error}); ищу по названию: {query}")
+            resolved_track, webpage_url, is_direct = _resolve_query(query)
         in_title = (track.get("title") or "").strip()
         in_artist = (track.get("artist") or "").strip()
         in_album = (track.get("album") or "").strip()
