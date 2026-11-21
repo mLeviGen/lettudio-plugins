@@ -1088,6 +1088,24 @@ def _is_source_timeout(error):
     return any(s in message for s in ("timed out", "timeout", "время ожидания", "zeitüberschreitung"))
 
 
+_UNREACHABLE_MARKERS = (
+    "failed to resolve", "getaddrinfo", "name or service not known", "temporary failure in name resolution",
+    "nodename nor servname", "connection refused", "connection reset", "connection aborted",
+    "max retries exceeded", "unable to download json metadata", "network is unreachable",
+)
+
+
+def _is_source_unreachable(error):
+    """Сервис не ответил: таймаут, сбой DNS или соединения (а не «записи нет»)."""
+    message = str(error).lower()
+    return _is_source_timeout(error) or any(s in message for s in _UNREACHABLE_MARKERS)
+
+
+def _is_soundcloud_url(url):
+    host = (urllib.parse.urlparse(url or "").hostname or "").lower()
+    return host == "soundcloud.com" or host.endswith(".soundcloud.com")
+
+
 def _playback_error(error):
     message = str(error)
     if _is_source_timeout(error):
@@ -1097,24 +1115,26 @@ def _playback_error(error):
 
 
 def _try_youtube_alternative(source_url, meta, error, yt_dlp):
-    host = (urllib.parse.urlparse(source_url).hostname or "").lower()
-    if not (host == "soundcloud.com" or host.endswith(".soundcloud.com")) or not _is_source_timeout(error):
+    if not _is_soundcloud_url(source_url) or not _is_source_unreachable(error):
         return None
     meta = meta or {}
     artist = _normalize_text(meta.get("artist") or "")
     title = _normalize_text(meta.get("title") or "")
     duration = int(meta.get("durationMs") or 0)
-    if not artist or not title or artist in ("поток", "неизвестный исполнитель") or duration <= 0:
+    if not artist or not title or artist in ("поток", "неизвестный исполнитель"):
         return None
+    wanted = f"{artist} {title}"
     p.status(T("SoundCloud не ответил. Ищу эту запись на YouTube..."))
     try:
         matches = _search_streams_and_rank(f"{meta['artist']} {meta['title']}", yt_dlp, youtube_only=True)
         for item in matches:
             candidate = item.get("_meta") or {}
-            if (_normalize_text(candidate.get("artist") or "") != artist or
-                    _normalize_text(candidate.get("title") or "") != title):
+            # Написание на площадках разное (Boombox/Бумбокс, е/ё) — сравниваем похожесть, а не равенство.
+            got = f"{_normalize_text(candidate.get('artist') or '')} {_normalize_text(candidate.get('title') or '')}"
+            if SequenceMatcher(None, wanted, got).ratio() < 0.75:
                 continue
-            if abs(int(candidate.get("durationMs") or 0) - duration) > max(5000, duration * .05):
+            cand_dur = int(candidate.get("durationMs") or 0)
+            if duration > 0 and cand_dur > 0 and abs(cand_dur - duration) > max(5000, duration * .05):
                 continue
             # Один проверенный альтернативный источник, без цепочки повторных поисков.
             return _resolve_query(item["arg"])
@@ -1142,7 +1162,7 @@ def _resolve_query(raw_query):
     cached_meta = None
     target_source = raw_query
     if not is_url and not raw_query.startswith(("ytsearch", "scsearch")):
-        target_source, cached_meta = _find_best_stream_match(raw_query)
+        return _resolve_best_of_search(raw_query, yt_dlp)
     elif is_url:
         cached_meta = _cache_meta_get(target_source)
 
@@ -1239,6 +1259,32 @@ def _resolve_query(raw_query):
     if http_headers:
         track["httpHeaders"] = http_headers
     return track, webpage_url, False
+
+
+def _resolve_best_of_search(raw_query, yt_dlp, attempts=3):
+    """Текстовый запрос: лучшие найденные записи по очереди, пока одна не откроется.
+    Не ответил SoundCloud — остальные его записи пропускаем, берём YouTube."""
+    items = _search_streams_and_rank(raw_query, yt_dlp)
+    if not items:
+        raise RuntimeError(T("По запросу ничего не найдено"))
+    errors = []
+    soundcloud_down = False
+    tried = 0
+    for item in items:
+        if tried >= attempts:
+            break
+        url = item["arg"]
+        if soundcloud_down and _is_soundcloud_url(url):
+            continue
+        tried += 1
+        try:
+            return _resolve_query(url)
+        except Exception as e:
+            errors.append(e)
+            if _is_soundcloud_url(url) and _is_source_unreachable(e):
+                soundcloud_down = True
+            p.log(f"Запись {url} не открылась ({e}); пробую следующую")
+    raise errors[0] if errors else RuntimeError(T("По запросу ничего не найдено"))
 
 
 def _search_yt(raw_query):
