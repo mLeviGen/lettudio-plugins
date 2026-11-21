@@ -1,17 +1,17 @@
 {
   "id": "discord-presence",
   "name": "Discord Presence",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "type": "process",
-  "description": "Показывает текущий трек в статусе Discord («Слушает Lettudio»). Нужен client_id в config.json.",
+  "description": "Показывает текущий трек и обложку в статусе Discord («Слушает Lettudio»). Настраивать ничего не нужно — Discord находится сам.",
   "i18n": {
     "en": {
       "name": "Discord Presence",
-      "description": "Shows the current track in your Discord status (\"Listening to Lettudio\"). Needs a client_id in config.json."
+      "description": "Shows the current track and cover in your Discord status (\"Listening to Lettudio\"). No setup needed — Discord is found automatically."
     },
     "de": {
       "name": "Discord Presence",
-      "description": "Zeigt den aktuellen Titel in deinem Discord-Status („Hört Lettudio“). Benötigt eine client_id in config.json."
+      "description": "Zeigt den aktuellen Titel und das Cover in deinem Discord-Status („Hört Lettudio“). Keine Einrichtung nötig — Discord wird automatisch gefunden."
     }
   },
   "run": {
